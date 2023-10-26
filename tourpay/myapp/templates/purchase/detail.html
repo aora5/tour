@@ -1,0 +1,219 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TOUR PAY</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="container container-tourpay pb-6">
+        <div class="row" style="border-bottom: #f5f7f9 solid 10px;">
+            <div class="container-main">
+                <div class="main-title">구매내역 상세</div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="confirm-text">결제완료</span>
+            <span class="product-title">[티오엔투어]스페인 7박 9일 스페인</span>
+            <span class="option-name">알함브라 궁전</span>
+        </div>
+        <div class="mt-3" style="border-bottom: #e1e3e6  solid 1px;"></div>
+        <div class="purchase-info">
+            <div class="purchase-info-title">구매일시</div>
+            <div class="purchase-info-sub">2023-12-10</div>
+        </div>
+        <div class="purchase-info">
+            <div class="purchase-info-title">구매수량</div>
+            <div class="purchase-info-sub">3명</div>
+        </div>
+        <div class="purchase-info">
+            <div class="purchase-info-title">결제수단</div>
+            <div class="purchase-info-sub">2023-12-10</div>
+        </div>
+        <div class="purchase-info">
+            <div class="purchase-info-title">BC카드 **** **** **** 4260</div>
+            <div class="purchase-price">210,000원</div>
+        </div>
+
+
+        <div class="mt-3"></div>
+        <input type="submit" value="결제취소" class="submit-btn" data-toggle="modal" data-target="#cancelModal">
+        <input type="button" value="돌아가기" class="cancel-btn" onclick="document.location.href='./'">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="cancelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-size modal-dialog-centered"> <!-- modal-sm 클래스 추가 -->
+                <div class="modal-content">
+                    <div class="mymodal-head">
+                        <h3 class="mymodal-title">결제 취소 요청</h3>
+                        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="mymodal-body">
+                        <p>상품의 결제취소를 요청합니다.<br>인솔자/가이드 확인 후 결제가 취소됩니다.</p>
+                    </div>
+                    <div class="mymodal-footer">
+                        <button type="button" class="pay-cancel-btn">취소요청</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
+
+
+<style>
+    .modal-dialog.modal-size {
+        position: relative;
+        width: auto;
+        margin-left: 24px;
+        margin-right: 24px;
+        pointer-events: none;
+    }
+
+    .mymodal-head {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 5px 0px 10px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20xp;
+    }
+
+    .mymodal-title {
+        margin: 30px 10px 12px 20px;
+        text-align: center;
+        flex-grow: 1;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+    }
+
+    .mymodal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .mymodal-footer {
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        padding: 0px 10px 10px 10px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+
+    .btn-close {
+        margin-left: auto;
+        margin-top: -35px;
+        /* 아이콘을 오른쪽으로 이동 */
+    }
+
+
+
+    .confirm-text {
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.42px;
+        color: #2b8eff;
+        margin-top: 40px;
+        margin-left: 4px;
+    }
+
+    .cancel-text {
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.42px;
+        color: #ff6a6a;
+        margin-top: 40px;
+        margin-left: 4px;
+    }
+
+    .product-title {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: -0.49px;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        margin-left: 4px;
+    }
+
+    .option-name {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.7px;
+        margin-left: 4px;
+    }
+
+    .purchase-info {
+        margin-top: 30px;
+        margin-left: 4px;
+        margin-right: 4px;
+        justify-content: space-between !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .purchase-info-title {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.49px;
+        color: #888888;
+        text-align: start;
+
+    }
+
+    .purchase-info-sub {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.49px;
+        color: #212121;
+        text-align: end;
+    }
+
+    .purchase-price {
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: -0.7px;
+        color: #2b8eff;
+        text-align: end;
+    }
+
+    .pay-cancel-btn {
+        color: aliceblue;
+        font-size: 16px;
+        background-color: #2b8eff;
+        margin: 10px 0px 10px 0px;
+        padding: 10px;
+        opacity: 1;
+        border: none;
+        border-radius: 6px;
+        width: 100%;
+    }
+</style>

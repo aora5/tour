@@ -1,0 +1,380 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TOUR PAY</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="container container-tourpay pb-6">
+        <div class="row">
+            <div class="col certification-area">
+                <div class="row mt-5">
+                    <div class="col-12 certification-header">
+                        인증번호를 입력하세요.
+                    </div>
+                </div>
+                <div class="row mt-4 mb-3">
+                    <div class="col-12 certification-dot">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 " id="authNumWarning">
+                        <span>인증번호가 일치하지 않습니다.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 certification-number-area">
+                        <div class="row">
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="1"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">1
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="2"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">2
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="3"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">3
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="4"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">4
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="5"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">5
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="6"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">6
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="7"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">7
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="8"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">8
+                                </button>
+                            </div>
+                            <div class="col certification-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="9"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">9
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col certification-number"></div>
+                            <div class="col certification-number">
+                                <button type="button" data-numpad-value="0"
+                                    onclick="pressNumpad(this.dataset.numpadValue)">0
+                                </button>
+                            </div>
+                            <div class="col certification-icon">
+                                <button type="button" onclick="pressNumpad(null)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-backspace" viewBox="0 0 30 30">
+                                        <path
+                                            d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z">
+                                        </path>
+                                        <path
+                                            d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+
+
+    let authNum = ''
+    const warning = document.getElementById('authNumWarning')
+
+
+
+    function renderDot() {
+        // value의 길이에 따라 dot의 상태를 변경한다.
+        let valueLength = authNum.length
+        let dots = document.getElementsByClassName('dot')
+        for (i = 0; i < dots.length; i++) {
+            let dot = dots[i]
+            if (i + 1 <= valueLength) {
+                dot.classList.add('active')
+            } else {
+                dot.classList.remove('active')
+            }
+        }
+    }
+
+    function pressNumpad(value) {
+        // 키패드를 터치했을때 이벤트를 처리한다.
+        warning.classList.remove('active')
+        if (value === null) {
+            console.log('delete')
+            authNum = authNum.slice(0, -1)
+        } else {
+            console.log(value)
+            authNum += value
+        }
+        renderDot()
+        if (authNum.length === 6) {
+            requestAuth()
+            //authFail()
+        }
+    }
+
+</script>
+
+
+
+
+<style>
+    .certification-area {
+        background-color: #ffffff;
+        border-radius: 30px 30px 0 0;
+        text-align: center;
+        max-width: 600px;
+        position: fixed;
+        bottom: 0;
+    }
+
+
+    .certification-header {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .dot {
+        height: 15px;
+        width: 15px;
+        background-color: #F3F4F7;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 15px;
+    }
+
+    .dot:last-child {
+        margin-right: 0;
+    }
+
+    .dot.active {
+        background-color: #037EF3;
+    }
+
+    .certification-warn {
+        font-size: 13px;
+        color: #F74022;
+        height: 20px;
+    }
+
+    .certification-warn span {
+        display: none;
+    }
+
+    .certification-warn.active span {
+        display: inline-block;
+    }
+
+    .certification-number-area {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .certification-number {
+        display: inline-block;
+        margin: 15px 0;
+        padding: 0;
+        font-size: 35px;
+    }
+
+    .certification-number button,
+    .certification-icon button {
+        border: none;
+        background: none;
+    }
+
+    .certification-icon {
+        display: inline-block;
+        margin: 14px 0 15px;
+        padding: 0;
+    }
+
+    .certification-icon .bi-backspace {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        top: 11px;
+        left: 9px;
+    }
+
+    .certification-footer {
+        color: #848A94;
+        margin: 0 0 10px;
+        font-size: 16px;
+    }
+
+
+    html,
+    body {
+        height: 100%;
+        background-color: white;
+        font-family: "Noto Sans KR", sans-serif !important;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 16px;
+        padding-left: 16px;
+        margin-bottom: 60px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+
+
+    .container-tourpay {
+        margin: 0 auto;
+        background-color: #ffffff;
+        max-width: 600px;
+        height: 100vh;
+    }
+
+    .container-title {
+        font-size: 20px;
+        color: #212121;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+    }
+
+    .container-main {
+        margin: 0 auto;
+        background-color: #ffffff;
+        max-width: 600px;
+        height: 56px;
+        overflow-y: auto;
+    }
+
+    .main-title {
+        font-size: 16px;
+        color: #242529;
+        font-weight: bold;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        /* 추가 */
+        height: 100%;
+        /* 추가 */
+    }
+
+    .overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+
+    .pt-4 {
+        padding-top: 24px !important;
+    }
+
+    .pt-5 {
+        padding-top: 40px !important;
+    }
+
+    .pb-6 {
+        padding-bottom: 4rem !important;
+    }
+
+    .submit-btn {
+        color: aliceblue;
+        font-size: 16px;
+        background-color: #2b8eff;
+        margin: 30px 10px 0px 0px;
+        padding: 10px;
+        opacity: 1;
+        border: none;
+        border-radius: 6px;
+        top: 459px;
+        left: 16px;
+        width: 100%;
+        height: 52px;
+    }
+
+    .cancel-btn {
+        color: #2b8eff;
+        font-size: 16px;
+        background-color: #ffffff;
+        margin: 5px 10px 10px 0px;
+        opacity: 1;
+        border-color: #2b8eff;
+        border-width: 1px;
+        border-radius: 6px;
+        left: 16px;
+        width: 100%;
+        height: 52px;
+    }
+
+
+    .mt-10 {
+        margin-top: 10rem !important;
+    }
+</style>

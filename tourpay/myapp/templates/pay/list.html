@@ -1,0 +1,150 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TOUR PAY</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="container-main">
+                <div class="main-title">결제수단</div>
+            </div>
+        </div>
+        <div class="row" style="border-bottom: #f5f7f9 solid 1px;"></div>
+    </div>
+    <div class="container container-tourpay pb-6" style="background-color: #f5f7f9;">
+        <div class="container container-sm">
+            <div class="row mt-3">
+                <div class="card-diy mb-3 mx-auto" style="box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10" onClick="location.href='/tour'">
+
+                                <span class="info-title">하나카드</span>
+                                <div class="info-sub">
+                                    <span>**** **** **** 1333</span>
+
+                                </div>
+                            </div>
+                            <div class="col-2 icon">
+                                <img src="/static/assets/img/ico-list-del.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container container-sm" style="margin-top: -15px;">
+            <div class="row mt-3">
+                <div class="card-diy mb-3 mx-auto" style="box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10" onClick="location.href='/tour'">
+
+                                <span class="info-title">삼성카드</span>
+                                <div class="info-sub">
+                                    <span>**** **** **** 2923</span>
+
+                                </div>
+                            </div>
+                            <div class="col-2 icon">
+                                <img src="/static/assets/img/ico-list-del.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="추가" class="submit-btn" onClick="location.href='add'">
+    </div>
+    {% include 'base/footer.html' %}
+    </div>
+</body>
+
+
+
+
+
+
+
+<style>
+    .info-small-text {
+        font-size: 12px;
+        color: #242529;
+    }
+
+    .h6 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500
+    }
+
+    .card-diy {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-clip: border-box;
+        border: none;
+        background-color: #ffffff;
+        box-shadow: 0px 3px 10px #00000008;
+        border-radius: 10px;
+        padding: 20px 16px 20px;
+    }
+
+
+    .info-title {
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: -0.49px;
+    }
+
+    .info-sub {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: -0.49px;
+        color: #888888;
+        margin-top: 8px;
+    }
+
+    .vrr {
+        display: inline-block;
+        align-self: stretch;
+        width: 1px;
+        min-height: 1em;
+        background-color: currentcolor;
+        opacity: 0.25;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .icon {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .list {
+        color: #c3c4c6;
+        margin: 5px;
+        padding: 3px;
+        border: solid 1px #888888;
+        border-radius: 5px;
+    }
+</style>

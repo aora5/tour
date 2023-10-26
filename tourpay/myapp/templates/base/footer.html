@@ -1,0 +1,88 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+    <div class="bottom_menu">
+            <div>
+                <img src="/static/assets/img/ico-home.svg" style="width: 24px; height: 24px;" onclick="document.location.href='../package/list'">
+                <p class="footer-font">메인</p>
+            </div>
+            <div>
+                <img src="/static/assets/img/ico-member.svg" style="width: 24px; height: 24px;">
+                <p class="footer-font">회원정보</p>
+            </div>
+            <div>
+                <img src="/static/assets/img/ico-receipt.svg" style="width: 24px; height: 24px;" onclick="document.location.href='../purchase'">
+                <p class="footer-font">구매내역</p>
+            </div>
+            <div>
+                <img src="/static/assets/img/ico-pay.svg" style="width: 24px; height: 24px;" onclick="document.location.href='../pay/list'">
+                <p class="footer-font">결제수단</p>
+            </div>
+            <div>
+                <img src="/static/assets/img/ico-cs.svg" style="width: 24px; height: 24px;">
+                <p class="footer-font">서비스안내</p>
+            </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+<style>
+    .bottom_menu { 
+        position: fixed; 
+        bottom: 0px; 
+        left: 0px; 
+        width: 100%; 
+        height: 58px; 
+        border-top: 1px solid #888888; 
+        background-color: white 
+    }
+
+    .bottom_menu > div { 
+        float: left; 
+        width: 20%; 
+        height: 100%; 
+        text-align: center; 
+        padding-top: 5px; 
+    }
+
+
+
+
+    body {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 58px;
+    }
+
+    .devider {
+        width: 10%;
+        height: 1px;
+        border-top: #888888 1px solid;
+        margin: 5px 5px 5px 5px;
+    }
+
+    .footer-font {
+        font-size: 10px;
+        font-weight: 400;
+        color: #888888;
+        margin-top: 3px;
+    }
+</style>
+
+
+
+

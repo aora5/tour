@@ -1,0 +1,361 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TOUR PAY</title>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container container-tourpay pb-6">
+        <div class="row">
+            <div class="text-center" style="margin-top: 157px;">
+                <h2>간편결제 비밀번호</h2>
+            </div>
+            <div class=" mt-5 mb-3">
+                <div class="col-12 dot-container text-center">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            <div class="col-12 fail-info text-center" id="passwordWarning" style="display: none;">
+                <span>비밀번호가 일치하지 않습니다.</span>
+            </div>
+            <div class="keypad-area">
+                <div class="row mt-3">
+                    <div class="col-12 keypad-number-area">
+                        <div class="row">
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="1"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">1
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="2"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">2
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="3"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">3
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="4"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">4
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="5"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">5
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="6"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">6
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="7"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">7
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="8"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">8
+                                </button>
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="9"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">9
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col keypad-number">
+                                <button type="button" class="px-4 py-0" data-numpad-value="cancel"
+                                    style="font-size: 16px; color: #FFFFFF;" onclick="document.location.href='option'">취소
+                            </div>
+                            <div class="col keypad-number">
+                                <button type="button" data-numpad-value="0"
+                                    onclick="pressNumpad(this.dataset.numpadValue)" style="color: #FFFFFF;">0
+                                </button>
+                            </div>
+                            <div class="col keypad-icon">
+                                <button type="button" onclick="pressNumpad(null)">
+                                    <img src="/static/assets/img/close.svg" class="bi bi-backspace" ></img>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let authNum = '';
+    const warning = document.getElementById('passwordWarning');
+    const dots = document.querySelectorAll('.dot');
+
+    function renderDot() {
+        for (let i = 0; i < 6; i++) {
+            if (i < authNum.length) {
+                dots[i].classList.add('active');
+            } else {
+                dots[i].classList.remove('active');
+            }
+        }
+    }
+
+    function pressNumpad(value) {
+        if (warning.style.display === 'inline-block') {
+            // 비밀번호가 일치하지 않은 상태에서 숫자를 입력하면 초기화
+            authNum = '';
+            warning.style.display = 'none';
+        }
+
+        if (value === null) {
+            authNum = authNum.slice(0, -1);
+        } else {
+            authNum += value;
+        }
+
+        renderDot();
+
+        if (authNum.length === 6) {
+            if (authNum === '123456') {
+                window.location.href = '/purchase';
+            } else {
+                warning.style.display = 'inline-block';
+            }
+        }
+    }
+</script>
+
+
+<style>
+    .keypad-area {
+        background-color: #007bff;
+        text-align: center;
+        max-width: 600px;
+        height: 375px;
+        position: fixed;
+        bottom: 0;
+    }
+
+
+    .fail-info {
+        font-size: 13px;
+        color: #F74022;
+        height: 20px;
+    }
+
+    .fail-info span {
+        display: none;
+    }
+
+    .fail-info span {
+        display: inline-block;
+    }
+
+    .dot {
+        height: 18px;
+        width: 18px;
+        background-color: #EAFAFF;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 15px;
+    }
+
+    .dot:last-child {
+        margin-right: 0;
+    }
+
+    .dot.active {
+        background-color: #037EF3;
+    }
+
+
+
+    .keypad-number-area {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .keypad-number {
+        color: #FFFFFF;
+        display: inline-block;
+        margin: 24px 0;
+        padding: 0;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+
+
+
+    .keypad-number button,
+    .keypad-icon button {
+        border: none;
+        background: none;
+    }
+
+    .keypad-icon {
+        display: inline-block;
+        margin: 29px 0;
+        padding: 0;
+    }
+
+    .keypad-icn .bi-backspace {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        top: 11px;
+        left: 9px;
+    }
+
+    html,
+    body {
+        height: 100%;
+        background-color: white;
+        font-family: "Noto Sans KR", sans-serif !important;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 16px;
+        padding-left: 16px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .container-tourpay {
+        margin: 0 auto;
+        background-color: #ffffff;
+        max-width: 600px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .container-title {
+        font-size: 20px;
+        color: #212121;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+    }
+
+    .container-main {
+        margin: 0 auto;
+        background-color: #ffffff;
+        max-width: 600px;
+        height: 56px;
+        overflow-y: auto;
+    }
+
+    .main-title {
+        font-size: 16px;
+        color: #242529;
+        font-weight: bold;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        /* 추가 */
+        height: 100%;
+        /* 추가 */
+    }
+
+    .overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+
+    .pb-6 {
+        padding-bottom: 4rem !important;
+    }
+
+
+
+    .keypad-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+
+    }
+
+
+
+
+
+    .submit-btn {
+        color: aliceblue;
+        font-size: 16px;
+        background-color: #2b8eff;
+        margin: 30px 10px 0px 0px;
+        padding: 10px;
+        opacity: 1;
+        border: none;
+        border-radius: 6px;
+        top: 459px;
+        left: 16px;
+        width: 100%;
+        height: 52px;
+    }
+
+    .signup-btn {
+        color: #2b8eff;
+        font-size: 16px;
+        background-color: #ffffff;
+        margin: 5px 10px 10px 0px;
+        opacity: 1;
+        border-color: #2b8eff;
+        border-width: 1px;
+        border-radius: 6px;
+        left: 16px;
+        width: 100%;
+        height: 52px;
+    }
+</style>

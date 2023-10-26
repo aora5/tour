@@ -1,0 +1,9 @@
+<svg id="ico-list-del" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="사각형_2661" data-name="사각형 2661" width="24" height="24" fill="none"/>
+  <g id="그룹_2100" data-name="그룹 2100" transform="translate(-447 -611)">
+    <path id="패스_1184" data-name="패스 1184" d="M466.443,635.942H453.2V623H452v13.53a.6.6,0,0,0,.6.588h14.443a.6.6,0,0,0,.6-.588V623h-1.2Z" transform="translate(-0.823 -4.117)" fill="#c3c4c6"/>
+    <path id="패스_1185" data-name="패스 1185" d="M463.2,615.941v-2.353a.594.594,0,0,0-.6-.588h-7.2a.594.594,0,0,0-.6.588v2.353H450v1.177h18v-1.177Z" transform="translate(0 0)" fill="#c3c4c6"/>
+    <rect id="사각형_2662" data-name="사각형 2662" width="0.882" height="10.589" transform="translate(456.307 618.883)" fill="#c3c4c6"/>
+    <rect id="사각형_2663" data-name="사각형 2663" width="0.882" height="10.589" transform="translate(460.811 618.883)" fill="#c3c4c6"/>
+  </g>
+</svg>
